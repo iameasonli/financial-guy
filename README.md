@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)]()
 
 > **Operational Status:** Previously operated under an independent production domain; migrated to **GitHub Pages** in October 2026 as a permanent, open-source quantitative finance portfolio and toolset.
-
+**Notice:** Effective October 17, 2026, financialguy.me will no longer be in use. Please note that the website may no longer be accessible after this date.
 **Financial Guy** is a lightweight, zero-dependency web platform designed to make corporate valuation, personal wealth planning, and global market monitoring intuitive and clutter-free. Created and maintained by **Mingyu Li**.
 
 ---
