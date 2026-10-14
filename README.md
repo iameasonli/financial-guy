@@ -1,6 +1,6 @@
 # Financial Guy — Quantitative Financial Modeling & Market Analytics Platform
 
-[![Live Demo](https://img.shields.io/badge/Live_Platform-GitHub_Pages-2ea44f?style=for-the-badge&logo=github)](https://iameasonli.github.io/financial-guy/)
+[![Live Website](https://img.shields.io/badge/Live_Platform-GitHub_Pages-2ea44f?style=for-the-badge&logo=github)](https://iameasonli.github.io/financial-guy/index.html)
 [![Tech Stack](https://img.shields.io/badge/Stack-HTML5_%7C_CSS3_%7C_Vanilla_JS-15171a?style=for-the-badge)]()
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)]()
 
