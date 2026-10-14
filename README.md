@@ -1,6 +1,6 @@
 # Financial Guy — Quantitative Financial Modeling & Market Analytics Platform
 
-[![Live Demo](https://img.shields.io/badge/Live_Platform-GitHub_Pages-2ea44f?style=for-the-badge&logo=github)](https://<your-github-username>.github.io/financial-guy/)
+[![Live Demo](https://img.shields.io/badge/Live_Platform-GitHub_Pages-2ea44f?style=for-the-badge&logo=github)](https://iameasonli.github.io/financial-guy/)
 [![Tech Stack](https://img.shields.io/badge/Stack-HTML5_%7C_CSS3_%7C_Vanilla_JS-15171a?style=for-the-badge)]()
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)]()
 
@@ -19,9 +19,11 @@
 
 ### 2. Corporate Valuation: DCF & WACC Model (`dcf.html`)
 * **CAPM & WACC Engine:** Automatically computes Cost of Equity ($R_e = R_f + \beta \times ERP$) and after-tax Weighted Average Cost of Capital:
-  $$WACC = \left(\frac{E}{V} \times R_e\right) + \left(\frac{D}{V} \times R_d \times (1 - T)\right)$$
-* **5-Year FCFF Projection:** Derives Free Cash Flow to Firm ($FCFF = EBIT(1-T) + D\&A - CapEx - \Delta NWC$) and discounts cash flows to Present Value.
-* **Dual Terminal Value Methods:** Supports both **Perpetuity Growth** ($TV = \frac{FCFF_n(1+g)}{WACC - g}$) and **Exit Multiple** ($EV/EBITDA$) approaches.
+
+$$WACC = \left(\frac{E}{V} \times R_e\right) + \left(\frac{D}{V} \times R_d \times (1 - T)\right)$$
+
+* **5-Year FCFF Projection:** Derives Free Cash Flow to Firm ($FCFF = \text{EBIT}(1 - T) + \text{DA} - \text{CapEx} - \Delta \text{NWC}$) and discounts cash flows to Present Value.
+* **Dual Terminal Value Methods:** Supports both **Perpetuity Growth** ($TV = \frac{FCFF_n(1+g)}{WACC - g}$) and **Exit Multiple** ($\text{EV} / \text{EBITDA}$) approaches.
 * **Sensitivity & Scenario Analysis:** Instant switching between `Base`, `Optimistic` (+5% rev growth, +2% EBIT margin, -1% WACC), and `Pessimistic` scenarios, complete with preset benchmark financial data (Amazon.com, Inc.).
 
 ### 3. Personal Wealth & Financial Planning Suite (`tools.html`)
