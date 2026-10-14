@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retirement Planning Calculator - Financial Guy</title>
+    <link rel="stylesheet" href="retirement.css">
+    <link rel="stylesheet" href="professional-tools.css">
+</head>
+<body class="calc-page professional-tool-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo-link">
+                    <img src="logo.jpg" alt="Financial Guy Logo" class="logo-img">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="tools.html" class="nav-link active">Tools</a>
+                <a href="about.html" class="nav-link">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- 第一部分：计算器名称（左上） -->
+        <header class="calc-header">
+            <h1>Retirement Planning Calculator</h1>
+            <p class="tool-guidance">Estimate your retirement fund target and the monthly savings needed to reach it.</p>
+        </header>
+
+        <main class="main-content">
+            <!-- 第二部分：输入参数 -->
+            <section class="input-section calc-section">
+                <h2 class="calc-section-title">Input Parameters</h2>
+                <form id="retirementForm" class="form">
+                    <div class="form-group">
+                        <label for="currentAge">Current Age</label>
+                        <input type="number" id="currentAge" name="currentAge" step="any" min="18" max="100" required placeholder="35">
+                    </div>
+                    <div class="form-group">
+                        <label for="retirementAge">Target Retirement Age</label>
+                        <input type="number" id="retirementAge" name="retirementAge" step="any" min="50" max="100" required placeholder="65">
+                    </div>
+                    <div class="form-group">
+                        <label for="currentSavings">PV - Current Savings</label>
+                        <input type="number" id="currentSavings" name="currentSavings" step="any" min="0" value="0" placeholder="500000">
+                    </div>
+                    <div class="form-group">
+                        <label for="monthlyExpense">PMT - Monthly Expense (Retirement)</label>
+                        <input type="number" id="monthlyExpense" name="monthlyExpense" step="any" min="0" required placeholder="15000">
+                    </div>
+                    <div class="form-group">
+                        <label for="annualReturn">r - Expected Return (%)</label>
+                        <input type="number" id="annualReturn" name="annualReturn" step="any" value="6" placeholder="6">
+                    </div>
+                    <div class="form-group">
+                        <label for="inflationRate">π - Inflation Rate (%)</label>
+                        <input type="number" id="inflationRate" name="inflationRate" step="any" value="3" placeholder="3">
+                    </div>
+                    <div class="form-group">
+                        <label for="retirementYears">Horizon - Years in Retirement</label>
+                        <input type="number" id="retirementYears" name="retirementYears" step="any" min="1" max="50" value="25" placeholder="25">
+                    </div>
+                    <button type="submit" class="btn-primary">Calculate</button>
+                </form>
+            </section>
+
+            <!-- 第三部分：计算结果 -->
+            <section id="resultSection" class="result-section calc-section" style="display: none;">
+                <h2 class="calc-section-title">Results</h2>
+                <div class="result-card">
+                    <div class="result-main">
+                        <div class="result-value">
+                            <span class="result-label">Required Fund (FV)</span>
+                            <span class="result-number" id="requiredFund">0</span>
+                            <span class="result-unit">$</span>
+                        </div>
+                    </div>
+                    <div class="result-breakdown">
+                        <h3>Savings Plan</h3>
+                        <div class="breakdown-list">
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Monthly Savings Needed</span>
+                                <span class="breakdown-value" id="monthlySavings">0</span>
+                                <span class="breakdown-unit">$/mo</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Years to Save</span>
+                                <span class="breakdown-value" id="yearsToSave">0</span>
+                                <span class="breakdown-unit">years</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">FV of Current Savings</span>
+                                <span class="breakdown-value" id="futureSavings">0</span>
+                                <span class="breakdown-unit">$</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Shortfall</span>
+                                <span class="breakdown-value" id="shortfall">0</span>
+                                <span class="breakdown-unit">$</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn-secondary" onclick="resetForm()">Recalculate</button>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-text">Financial Guy</span>
+                </div>
+                <p class="footer-text">
+                    Created by <strong>mingyu li</strong> | Professional Financial Tools Platform
+                </p>
+                <p class="footer-copyright">
+                    © 2026 Financial Guy. Focused on providing practical tools for everyone.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="retirement.js"></script>
+</body>
+</html>

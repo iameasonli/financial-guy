@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Income Tax Calculator - Financial Guy</title>
+    <link rel="stylesheet" href="tax.css">
+    <link rel="stylesheet" href="professional-tools.css">
+</head>
+<body class="calc-page professional-tool-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo-link">
+                    <img src="logo.jpg" alt="Financial Guy Logo" class="logo-img">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="tools.html" class="nav-link active">Tools</a>
+                <a href="about.html" class="nav-link">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- 第一部分：计算器名称（左上） -->
+        <header class="calc-header">
+            <h1>Personal Income Tax Calculator</h1>
+            <p class="tool-guidance">Choose an income type and enter your details to estimate tax payable and after-tax income.</p>
+        </header>
+
+        <main class="main-content">
+            <!-- 第二部分：输入参数 -->
+            <section class="input-section calc-section">
+                <h2 class="calc-section-title">Input Parameters</h2>
+                <form id="taxForm" class="form">
+                    <div class="form-group full-width">
+                        <label for="calcType">Calculation Type</label>
+                        <select id="calcType" name="calcType">
+                            <option value="salary">Comprehensive Income (Salary)</option>
+                            <option value="bonus">Bonus (Separate Taxation)</option>
+                        </select>
+                    </div>
+
+                    <div id="salarySection">
+                        <div class="form-group">
+                            <label for="monthlySalary">Gross Salary (monthly)</label>
+                            <input type="number" id="monthlySalary" name="monthlySalary" step="any" min="0" required placeholder="15000">
+                        </div>
+                        <div class="form-group">
+                            <label for="months">Months</label>
+                            <input type="number" id="months" name="months" step="any" min="1" max="12" value="12" placeholder="12">
+                        </div>
+                        <div class="form-group">
+                            <label for="standardDeduction">Standard Deduction ($/yr)</label>
+                            <input type="number" id="standardDeduction" name="standardDeduction" step="any" min="0" value="60000" placeholder="60000">
+                        </div>
+                        <div class="form-group">
+                            <label for="specialDeduction">Special Deduction ($/yr)</label>
+                            <input type="number" id="specialDeduction" name="specialDeduction" step="any" min="0" value="0" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div id="bonusSection" style="display: none;">
+                        <div class="form-group">
+                            <label for="bonusAmount">Bonus Amount</label>
+                            <input type="number" id="bonusAmount" name="bonusAmount" step="any" min="0" placeholder="50000">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Calculate</button>
+                </form>
+            </section>
+
+            <!-- 第三部分：计算结果 -->
+            <section id="resultSection" class="result-section calc-section" style="display: none;">
+                <h2 class="calc-section-title">Results</h2>
+                <div class="result-card">
+                    <div class="result-main">
+                        <div class="result-value">
+                            <span class="result-label">Tax Payable</span>
+                            <span class="result-number" id="taxPayable">0</span>
+                            <span class="result-unit">$</span>
+                        </div>
+                    </div>
+                    <div class="result-breakdown">
+                        <h3>Breakdown</h3>
+                        <div class="breakdown-list">
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Taxable Income</span>
+                                <span class="breakdown-value" id="taxableIncome">0</span>
+                                <span class="breakdown-unit">$</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">After-Tax Income</span>
+                                <span class="breakdown-value" id="afterTaxIncome">0</span>
+                                <span class="breakdown-unit">$</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Effective Tax Rate</span>
+                                <span class="breakdown-value" id="effectiveRate">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn-secondary" onclick="resetForm()">Recalculate</button>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-text">Financial Guy</span>
+                </div>
+                <p class="footer-text">
+                    Created by <strong>mingyu li</strong> | Professional Financial Tools Platform
+                </p>
+                <p class="footer-copyright">
+                    © 2026 Financial Guy. Focused on providing practical tools for everyone.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="tax.js"></script>
+</body>
+</html>

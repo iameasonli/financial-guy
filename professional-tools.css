@@ -1,0 +1,498 @@
+/* Shared professional presentation for the calculator suite. */
+:root {
+    --tool-accent: #2d7a3e;
+    --tool-accent-hover: #246b32;
+    --tool-navy: #1a365d;
+    --tool-canvas: #f4f7fb;
+    --tool-card-shadow: 0 8px 24px rgba(20, 37, 63, 0.06);
+}
+
+body.professional-tool-page {
+    min-height: 100vh;
+    background: var(--tool-canvas);
+}
+
+.professional-tool-page .container {
+    width: min(100% - 2rem, 1400px);
+    max-width: 1400px;
+    padding: 0;
+}
+
+.professional-tool-page .calc-header {
+    margin: 1.5rem 0 0.75rem;
+}
+
+.professional-tool-page .calc-header h1,
+.professional-tool-page .banner-title {
+    color: #172b4d;
+    font-size: clamp(1.65rem, 2.5vw, 2.1rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.professional-tool-page .tool-guidance,
+.professional-tool-page .banner-subtitle {
+    margin: 0.65rem 0 0;
+    padding: 0.7rem 0.9rem;
+    border-radius: 0.45rem;
+    background: var(--tool-navy);
+    color: #fff;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    max-width: none;
+    text-align: left;
+    animation: none;
+}
+
+.professional-tool-page .banner-section {
+    padding: 1.5rem 0 0.5rem;
+    text-align: left;
+}
+
+.professional-tool-page .banner-container {
+    max-width: 1400px;
+    width: min(100% - 2rem, 1400px);
+    padding: 0;
+}
+
+.professional-tool-page .banner-badge {
+    margin: 0 0 0.5rem;
+    padding: 0.3rem 0.65rem;
+    background: #e8f2eb;
+    color: var(--tool-accent);
+    font-size: 0.75rem;
+    animation: none;
+}
+
+.professional-tool-page .banner-title {
+    animation: none;
+}
+
+.professional-tool-page .main-content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+    padding: 0.75rem 0 2.5rem;
+    align-items: start;
+}
+
+.professional-tool-page .main-content:has(> .result-section[style*="display: block"]) {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+}
+
+.professional-tool-page .input-section,
+.professional-tool-page .result-section,
+.professional-tool-page .calc-section {
+    min-width: 0;
+    margin: 0;
+    padding: 1.25rem;
+    border: 1px solid #e1e8f0;
+    border-radius: 0.65rem;
+    background: #fff;
+    box-shadow: var(--tool-card-shadow);
+}
+
+.professional-tool-page .input-section h2,
+.professional-tool-page .result-section h2,
+.professional-tool-page .calc-section-title {
+    margin: 0 0 1rem;
+    padding: 0 0 0.75rem;
+    border-bottom: 1px solid #e8edf3;
+    color: #243b5a;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+.professional-tool-page .form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+}
+
+.professional-tool-page .form-group.full-width,
+.professional-tool-page .form > button {
+    grid-column: 1 / -1;
+}
+
+.professional-tool-page .form-group {
+    min-width: 0;
+    gap: 0.35rem;
+}
+
+.professional-tool-page label,
+.professional-tool-page .form-group label {
+    color: #53657d;
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+.professional-tool-page input[type="number"],
+.professional-tool-page input[type="text"],
+.professional-tool-page select {
+    min-height: 42px;
+    padding: 0.6rem 0.7rem;
+    border-color: #d5deea;
+    border-radius: 0.4rem;
+    background-color: #fff;
+    font-size: 0.9rem;
+}
+
+.professional-tool-page input:focus,
+.professional-tool-page select:focus {
+    border-color: #5484bd;
+    box-shadow: 0 0 0 3px rgba(57, 105, 161, 0.12);
+}
+
+.professional-tool-page .btn-primary,
+.professional-tool-page .btn-secondary {
+    min-height: 42px;
+    width: auto;
+    margin-top: 0.25rem;
+    padding: 0.65rem 1.15rem;
+    border-radius: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 650;
+}
+
+.professional-tool-page .btn-primary {
+    background: var(--tool-accent);
+    grid-column: 1 / -1;
+}
+
+.professional-tool-page .btn-primary:hover {
+    background: var(--tool-accent-hover);
+}
+
+.professional-tool-page .btn-secondary {
+    border: 1px solid #d5deea;
+    background: #fff;
+    color: #344a65;
+}
+
+.professional-tool-page .result-card {
+    margin-bottom: 0.75rem;
+    padding: 1rem;
+    border-color: #e1e8f0;
+    border-radius: 0.55rem;
+    background: #f8fafc;
+}
+
+.professional-tool-page .result-main {
+    margin: 0 0 0.75rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #e1e8f0;
+}
+
+.professional-tool-page .result-value {
+    gap: 0.3rem;
+}
+
+.professional-tool-page .result-label {
+    color: #65758b;
+    font-size: 0.78rem;
+}
+
+.professional-tool-page .result-number {
+    color: var(--tool-accent);
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    overflow-wrap: anywhere;
+}
+
+.professional-tool-page .result-unit {
+    font-size: 0.85rem;
+}
+
+.professional-tool-page .result-breakdown {
+    margin-top: 1rem;
+}
+
+.professional-tool-page .result-breakdown h3 {
+    margin-bottom: 0.6rem;
+    font-size: 0.92rem;
+}
+
+.professional-tool-page .breakdown-list {
+    gap: 0.4rem;
+}
+
+.professional-tool-page .breakdown-item,
+.professional-tool-page .info-item {
+    padding: 0.65rem 0.75rem;
+    border: 1px solid #e7edf3;
+    border-radius: 0.4rem;
+    background: #fff;
+}
+
+.professional-tool-page .breakdown-label,
+.professional-tool-page .info-label {
+    color: #65758b;
+    font-size: 0.82rem;
+}
+
+.professional-tool-page .breakdown-value,
+.professional-tool-page .info-value {
+    color: #243b5a;
+    font-size: 0.9rem;
+    font-weight: 650;
+}
+
+.professional-tool-page .footer {
+    margin-top: 0;
+}
+
+/* Budget input groups retain their paired category layout on wide screens. */
+.budget-tool-page .expense-categories {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+}
+
+.budget-tool-page .form {
+    display: flex;
+    flex-direction: column;
+}
+
+.budget-tool-page .expense-categories > .form-row {
+    display: contents;
+}
+
+.budget-tool-page .form-section-title {
+    margin: 0.4rem 0 0;
+    color: #243b5a;
+    font-size: 0.95rem;
+}
+
+.budget-tool-page .form-hint {
+    margin: 0;
+}
+
+.budget-tool-page .result-value.positive .result-number {
+    color: var(--tool-accent);
+}
+
+.budget-tool-page .result-value.negative .result-number {
+    color: #c0392b;
+}
+
+/* DCF is intentionally a full-width, data-dense analyst workspace. */
+.dcf-tool-page .container {
+    width: min(100% - 2rem, 1500px);
+    max-width: 1500px;
+}
+
+.dcf-tool-page .main-content {
+    display: block;
+    padding-top: 0.75rem;
+}
+
+.dcf-tool-page .input-section {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.dcf-tool-page .input-group {
+    margin: 0 0 1rem;
+    padding: 1.15rem;
+    border: 1px solid #e1e8f0;
+    border-radius: 0.65rem;
+    background: #fff;
+    box-shadow: var(--tool-card-shadow);
+}
+
+.dcf-tool-page .input-group h3 {
+    margin: 0 0 0.8rem;
+    padding: 0 0 0.65rem;
+    border-bottom: 1px solid #e8edf3;
+    color: #243b5a;
+    font-size: 1rem;
+}
+
+.dcf-tool-page .form-grid {
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 0.9rem;
+}
+
+.dcf-tool-page .wacc-breakdown {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+}
+
+.dcf-tool-page .wacc-item.highlight {
+    grid-column: 1 / -1;
+}
+
+.dcf-tool-page .historical-table-container,
+.dcf-tool-page .table-wrapper {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.dcf-tool-page .historical-table,
+.dcf-tool-page .cashflow-table {
+    min-width: 760px;
+}
+
+.dcf-tool-page .scenario-selector {
+    margin-bottom: 1rem;
+}
+
+.dcf-tool-page .scenario-selector h3 {
+    font-size: 1rem;
+}
+
+.dcf-tool-page .result-section {
+    margin-top: 1rem;
+}
+
+.dcf-tool-page .result-cards {
+    gap: 0.75rem;
+}
+
+.dcf-tool-page .result-card {
+    min-width: 0;
+}
+
+.dcf-tool-page .wacc-item.highlight,
+.dcf-tool-page .result-card.main-result,
+.dcf-tool-page .detail-section.highlight {
+    background: var(--tool-navy);
+    border-color: var(--tool-navy);
+}
+
+/* Tools directory */
+.professional-tools-index {
+    background: var(--tool-canvas);
+}
+
+.professional-tools-index .banner-section {
+    padding: 2.5rem 0 1.25rem;
+    text-align: left;
+}
+
+.professional-tools-index .banner-container {
+    max-width: 1100px;
+    text-align: left;
+}
+
+.professional-tools-index .banner-title {
+    color: #172b4d;
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: -0.04em;
+}
+
+.professional-tools-index .tools-section {
+    padding: 0.5rem 0 3rem;
+    background: transparent;
+}
+
+.professional-tools-index .tools-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.professional-tools-index .tool-card {
+    min-height: 190px;
+    padding: 1.25rem;
+    border-color: #e1e8f0;
+    border-radius: 0.65rem;
+    box-shadow: var(--tool-card-shadow);
+}
+
+.professional-tools-index .tool-card.available:hover {
+    transform: translateY(-3px);
+    border-color: #b8c9dc;
+    box-shadow: 0 14px 28px rgba(20, 37, 63, 0.1);
+}
+
+.professional-tools-index .tool-title {
+    color: #243b5a;
+    font-size: 1.08rem;
+}
+
+.professional-tools-index .tool-description {
+    line-height: 1.6;
+}
+
+.professional-tools-index .tool-button {
+    align-self: stretch;
+    padding: 0.65rem 1rem;
+    border-radius: 0.4rem;
+    background: var(--tool-accent);
+    font-weight: 600;
+}
+
+.professional-tools-index .tool-button:hover {
+    background: var(--tool-accent-hover);
+}
+
+@media (max-width: 900px) {
+    .professional-tool-page .main-content:has(> .result-section[style*="display: block"]) {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .professional-tool-page .container,
+    .professional-tool-page .banner-container,
+    .dcf-tool-page .container {
+        width: min(100% - 1.25rem, 1500px);
+    }
+
+    .professional-tool-page .main-content {
+        padding-bottom: 1.5rem;
+    }
+
+    .professional-tool-page .input-section,
+    .professional-tool-page .result-section,
+    .professional-tool-page .calc-section {
+        padding: 0.9rem;
+    }
+
+    .budget-tool-page .expense-categories {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .professional-tool-page .form {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .dcf-tool-page .input-group {
+        padding: 0.85rem;
+    }
+
+    .dcf-tool-page .nav-container {
+        padding-right: 0.75rem;
+        padding-left: 0.75rem;
+    }
+
+    .dcf-tool-page .nav-links {
+        gap: 0.6rem;
+        margin-left: 0.75rem;
+    }
+
+    .dcf-tool-page .nav-link {
+        font-size: 0.88rem;
+    }
+}
+
+@media print {
+    .professional-tool-page .navbar,
+    .professional-tool-page .footer,
+    .professional-tool-page .tool-guidance,
+    .professional-tool-page .banner-subtitle,
+    .professional-tool-page .btn-primary,
+    .professional-tool-page .btn-secondary {
+        display: none !important;
+    }
+
+    .professional-tool-page {
+        background: #fff;
+    }
+}

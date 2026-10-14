@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DCF Discounted Cash Flow Model - Financial Guy</title>
+    <link rel="stylesheet" href="dcf.css">
+    <link rel="stylesheet" href="professional-tools.css">
+</head>
+<body class="professional-tool-page dcf-tool-page">
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo-link">
+                    <img src="logo.jpg" alt="Financial Guy Logo" class="logo-img">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="tools.html" class="nav-link">Tools</a>
+                <a href="about.html" class="nav-link">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Banner Section -->
+    <section class="banner-section">
+        <div class="banner-container">
+            <div class="banner-badge">
+                <span>📊 Professional Tool</span>
+            </div>
+            <h1 class="banner-title">DCF Discounted Cash Flow Model</h1>
+            <p class="banner-subtitle">Calculate WACC and intrinsic stock value based on financial statements, supporting multiple discount methods and scenario analysis</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <main class="main-content">
+            <!-- All content in one section -->
+            <section class="input-section">
+                <!-- Preset Company Selector (激活 dcf.js 中的预设财报功能) -->
+<div class="input-group" style="background: var(--bg-secondary); padding: 1rem 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+        <div>
+            <h3 style="margin-bottom: 0.25rem; border: none; padding: 0;">Quick Demo: Load Preset Financial Data</h3>
+            <p class="input-hint" style="margin-bottom: 0;">Select a benchmark company to auto-populate 5-year historical/forecast data and capital structure.</p>
+        </div>
+        <select id="presetCompany" style="padding: 0.6rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); font-weight: 600; min-width: 220px;">
+            <option value="">-- Select a Company --</option>
+            <option value="amazon">Amazon.com, Inc. (AMZN)</option>
+        </select>
+    </div>
+</div>
+                <!-- Capital Structure Data (for WACC calculation) -->
+                <div class="input-group">
+                    <h3>Capital Structure Data</h3>
+                    <p class="input-hint">Enter current capital structure data for WACC calculation.</p>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="totalDebt">Total Debt (M)</label>
+                            <input type="number" id="totalDebt" step="0.01" placeholder="Enter total debt">
+                        </div>
+                        <div class="form-group">
+                            <label for="sharePrice">Current Share Price (USD)</label>
+                            <input type="number" id="sharePrice" step="0.01" placeholder="Enter current share price">
+                        </div>
+                        <div class="form-group">
+                            <label for="dilutedShares">Diluted Shares Outstanding (M)</label>
+                            <input type="number" id="dilutedShares" step="0.01" placeholder="Enter diluted shares outstanding">
+                        </div>
+                        <div class="form-group">
+                            <label for="totalEquity">Total Equity (M) - Auto-calculated</label>
+                            <input type="number" id="totalEquity" step="0.01" readonly style="background-color: #f0f0f0; cursor: not-allowed;" placeholder="Auto-calculated">
+                            <small class="form-hint">Total Equity = Share Price × Diluted Shares Outstanding</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="cash">Cash & Equivalents (M)</label>
+                            <input type="number" id="cash" step="0.01" placeholder="Enter cash and equivalents">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WACC Parameters -->
+                <div class="input-group">
+                    <h3>WACC Calculation Parameters</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="riskFreeRate">Risk-Free Rate (%)</label>
+                            <input type="number" id="riskFreeRate" step="0.01" value="3.0" placeholder="e.g., 3.0">
+                        </div>
+                        <div class="form-group">
+                            <label for="marketRiskPremium">Market Risk Premium (%)</label>
+                            <input type="number" id="marketRiskPremium" step="0.01" value="6.0" placeholder="e.g., 6.0">
+                        </div>
+                        <div class="form-group">
+                            <label for="beta">Beta Coefficient</label>
+                            <input type="number" id="beta" step="0.01" value="1.0" placeholder="e.g., 1.0">
+                        </div>
+                        <div class="form-group">
+                            <label for="costOfDebt">Cost of Debt (%) - Pre-tax</label>
+                            <input type="number" id="costOfDebt" step="0.01" value="5.0" placeholder="e.g., 5.0">
+                            <small class="form-hint">Enter pre-tax cost of debt</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="taxRate">Tax Rate (%)</label>
+                            <input type="number" id="taxRate" step="0.01" value="25.0" placeholder="e.g., 25.0">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WACC Calculation Display -->
+                <div class="input-group">
+                    <h3>WACC Calculation</h3>
+                    <div class="wacc-card">
+                        <div class="wacc-breakdown">
+                            <div class="wacc-item">
+                                <span class="wacc-label">Cost of Equity (Re)</span>
+                                <span class="wacc-value" id="costOfEquity">0.00%</span>
+                            </div>
+                            <div class="wacc-item">
+                                <span class="wacc-label">Cost of Debt (Rd)</span>
+                                <span class="wacc-value" id="costOfDebtDisplay">0.00%</span>
+                            </div>
+                            <div class="wacc-item">
+                                <span class="wacc-label">Tax Rate (T)</span>
+                                <span class="wacc-value" id="taxRateDisplay">0.00%</span>
+                            </div>
+                            <div class="wacc-item">
+                                <span class="wacc-label">Debt Weight (D/V)</span>
+                                <span class="wacc-value" id="debtWeight">0.00%</span>
+                            </div>
+                            <div class="wacc-item">
+                                <span class="wacc-label">Equity Weight (E/V)</span>
+                                <span class="wacc-value" id="equityWeight">0.00%</span>
+                            </div>
+                            <div class="wacc-item highlight">
+                                <span class="wacc-label">WACC</span>
+                                <span class="wacc-value" id="waccResult">0.00%</span>
+                            </div>
+                        </div>
+                        <div class="wacc-formula">
+                            <p>WACC = (E/V) × Re + (D/V) × Rd × (1 - T)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Future Cash Flow Forecast (5 Years) -->
+                <div class="input-group">
+                    <h3>Future Cash Flow Forecast (5 Years)</h3>
+                    <p class="input-hint">Enter your forecasted financial data for the next 5 years. FCFF will be calculated automatically.</p>
+                    <div id="forecastDataTable" class="historical-table-container">
+                        <table class="historical-table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Year 1</th>
+                                    <th>Year 2</th>
+                                    <th>Year 3</th>
+                                    <th>Year 4</th>
+                                    <th>Year 5</th>
+                                </tr>
+                            </thead>
+                            <tbody id="forecastDataBody">
+                                <tr>
+                                    <td class="row-label">Revenue (M)</td>
+                                    <td><input type="number" class="forecast-revenue" data-year="1" step="0.01" placeholder="0"></td>
+                                    <td><input type="number" class="forecast-revenue" data-year="2" step="0.01" placeholder="0"></td>
+                                    <td><input type="number" class="forecast-revenue" data-year="3" step="0.01" placeholder="0"></td>
+                                    <td><input type="number" class="forecast-revenue" data-year="4" step="0.01" placeholder="0"></td>
+                                    <td><input type="number" class="forecast-revenue" data-year="5" step="0.01" placeholder="0"></td>
+                                </tr>
+                                <tr>
+                                    <td class="row-label">EBIT (M)</td>
+                                    <td><input type="number" class="forecast-ebit" data-year="1" step="0.01" placeholder="0"></td>
+                                    <td><input type="number" class="forecast-ebit" data-year="2" step="0.01" placeholder="0"></td>
+                                    <td><input type="number" class="forecast-ebit" data-year="3" step="0.01" placeholder="0"></td>
+                                    <td><input type="number" class="forecast-ebit" data-year="4" step="0.01" placeholder="0"></td>
+                                    <td><input type="number" class="forecast-ebit" data-year="5" step="0.01" placeholder="0"></td>
+                                </tr>
+                                <tr>
+                                    <td class="row-label">Depreciation & Amortization (M)</td>
+                                    <td><input type="number" class="forecast-depreciation" data-year="1" step="0.01" placeholder="0"></td>
+                                    <td><input type="number" class="forecast-depreciation" data-year="2" step="0.01" placeholder="0"></td>
+                                    <td><input type="number" class="forecast-depreciation" data-year="3" step="0.01" placeholder="0"></td>
+                                    <td><input type="number" class="forecast-depreciation" data-year="4" step="0.01" placeholder="0"></td>
+                                    <td><input type="number" class="forecast-depreciation" data-year="5" step="0.01" placeholder="0"></td>
+                                </tr>
+                                <tr>
+                                    <td class="row-label">Capital Expenditure (M)</td>
+                                    <td><input type="number" class="forecast-capex" data-year="1" step="0.01" placeholder="0"></td>
+                                    <td><input type="number" class="forecast-capex" data-year="2" step="0.01" placeholder="0"></td>
+                                    <td><input type="number" class="forecast-capex" data-year="3" step="0.01" placeholder="0"></td>
+                                    <td><input type="number" class="forecast-capex" data-year="4" step="0.01" placeholder="0"></td>
+                                    <td><input type="number" class="forecast-capex" data-year="5" step="0.01" placeholder="0"></td>
+                                </tr>
+                                <tr>
+                                    <td class="row-label">Change in Working Capital (M)</td>
+                                    <td><input type="number" class="forecast-wc-change" data-year="1" step="0.01" placeholder="0"></td>
+                                    <td><input type="number" class="forecast-wc-change" data-year="2" step="0.01" placeholder="0"></td>
+                                    <td><input type="number" class="forecast-wc-change" data-year="3" step="0.01" placeholder="0"></td>
+                                    <td><input type="number" class="forecast-wc-change" data-year="4" step="0.01" placeholder="0"></td>
+                                    <td><input type="number" class="forecast-wc-change" data-year="5" step="0.01" placeholder="0"></td>
+                                </tr>
+                                <tr>
+                                    <td class="row-label">Tax Rate (%)</td>
+                                    <td><input type="number" class="forecast-tax-rate" data-year="1" step="0.01" value="25" placeholder="25"></td>
+                                    <td><input type="number" class="forecast-tax-rate" data-year="2" step="0.01" value="25" placeholder="25"></td>
+                                    <td><input type="number" class="forecast-tax-rate" data-year="3" step="0.01" value="25" placeholder="25"></td>
+                                    <td><input type="number" class="forecast-tax-rate" data-year="4" step="0.01" value="25" placeholder="25"></td>
+                                    <td><input type="number" class="forecast-tax-rate" data-year="5" step="0.01" value="25" placeholder="25"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Terminal Value Parameters -->
+                <div class="input-group">
+                    <h3>Terminal Value Calculation Parameters</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="terminalValueMethod">Terminal Value Method</label>
+                            <select id="terminalValueMethod">
+                                <option value="perpetuity">Perpetuity Growth Method</option>
+                                <option value="exitMultiple">Exit Multiple Method</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="perpetuityGroup">
+                            <label for="perpetualGrowthRate">Perpetual Growth Rate (%)</label>
+                            <input type="number" id="perpetualGrowthRate" step="0.1" value="2.5" placeholder="e.g., 2.5">
+                        </div>
+                        <div class="form-group" id="exitMultipleGroup" style="display: none;">
+                            <label for="exitMultiple">Exit Multiple (EV/EBITDA)</label>
+                            <input type="number" id="exitMultiple" step="0.1" value="10.0" placeholder="e.g., 10.0">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calculate Button -->
+                <div class="action-buttons" style="margin-top: 2rem;">
+                    <button type="button" class="btn-primary" id="btnCalculate" onclick="calculateDCF()" style="width: 100%;">Calculate DCF</button>
+                </div>
+
+                <!-- Results Section (Initially Hidden) -->
+                <div id="resultSection" class="result-section" style="display: none;">
+                    <h2>DCF Calculation Results</h2>
+                    
+                    <!-- Scenario Analysis -->
+                    <div class="scenario-selector">
+                        <h3>Scenario Analysis</h3>
+                        <div class="scenario-tabs">
+                            <button class="scenario-tab active" data-scenario="base">Base Case</button>
+                            <button class="scenario-tab" data-scenario="optimistic">Optimistic</button>
+                            <button class="scenario-tab" data-scenario="pessimistic">Pessimistic</button>
+                        </div>
+                        <div class="scenario-adjustments" id="scenarioAdjustments">
+                            <!-- Scenario adjustment parameters will be dynamically generated -->
+                        </div>
+                    </div>
+
+                    <!-- Result Cards -->
+                    <div class="result-cards">
+                        <div class="result-card main-result">
+                            <div class="result-header">
+                                <h3>Enterprise Value (EV)</h3>
+                            </div>
+                            <div class="result-value" id="enterpriseValue">0.00</div>
+                            <div class="result-unit">M</div>
+                        </div>
+                        <div class="result-card">
+                            <div class="result-header">
+                                <h3>Equity Value</h3>
+                            </div>
+                            <div class="result-value" id="equityValue">0.00</div>
+                            <div class="result-unit">M</div>
+                        </div>
+                        <div class="result-card">
+                            <div class="result-header">
+                                <h3>Value Per Share</h3>
+                            </div>
+                            <div class="result-value" id="valuePerShare">0.00</div>
+                            <div class="result-unit">USD/Share</div>
+                        </div>
+                    </div>
+
+                    <!-- Cash Flow Forecast Table -->
+                    <div class="cashflow-table-container">
+                        <h3>Cash Flow Forecast</h3>
+                        <div class="table-wrapper">
+                            <table id="cashflowTable" class="cashflow-table">
+                                <thead>
+                                    <tr>
+                                        <th>Year</th>
+                                        <th>Revenue</th>
+                                        <th>EBIT</th>
+                                        <th>EBIT(1-T)</th>
+                                        <th>D&A</th>
+                                        <th>CapEx</th>
+                                        <th>WC Change</th>
+                                        <th>FCFF</th>
+                                        <th>Present Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Detailed Calculation Process -->
+                    <details class="calculation-details">
+                        <summary>View Detailed Calculation Process</summary>
+                        <div class="details-content">
+                            <div class="detail-section">
+                                <h4>Forecast Period Cash Flow PV</h4>
+                                <div class="detail-value" id="pvForecastPeriod">0.00 M</div>
+                            </div>
+                            <div class="detail-section">
+                                <h4>Terminal Value</h4>
+                                <div class="detail-value" id="terminalValue">0.00 M</div>
+                            </div>
+                            <div class="detail-section">
+                                <h4>Terminal Value PV</h4>
+                                <div class="detail-value" id="pvTerminalValue">0.00 M</div>
+                            </div>
+                            <div class="detail-section">
+                                <h4>Enterprise Value</h4>
+                                <div class="detail-value" id="enterpriseValueDetail">0.00 M</div>
+                            </div>
+                            <div class="detail-section">
+                                <h4>Less: Net Debt</h4>
+                                <div class="detail-value" id="netDebt">0.00 M</div>
+                            </div>
+                            <div class="detail-section highlight">
+                                <h4>Equity Value</h4>
+                                <div class="detail-value" id="equityValueDetail">0.00 M</div>
+                            </div>
+                        </div>
+                    </details>
+
+                    <button type="button" class="btn-secondary" onclick="resetCalculation()" style="margin-top: 1.5rem; width: 100%;">Reset & Recalculate</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="logo-icon">💰</span>
+                <span class="logo-text">Financial Guy</span>
+            </div>
+            <p class="footer-text">
+                DCF Model-based Stock Valuation Tool | Professional Financial Analysis
+            </p>
+            <p class="footer-copyright">
+                Created by <strong>mingyuli</strong> | © 2024 Financial Guy
+            </p>
+        </div>
+    </footer>
+
+    <script src="dcf.js"></script>
+</body>
+</html>

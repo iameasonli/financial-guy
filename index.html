@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Guy - Dashboard</title>
+    <link rel="stylesheet" href="index.css">
+    <!-- Leaflet 地图库 -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo-link">
+                    <img src="logo.jpg" alt="Financial Guy Logo" class="logo-img">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="tools.html" class="nav-link">Tools</a>
+                <a href="about.html" class="nav-link">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Ticker Tape 行情滚动条 - 全宽，快速浏览主要标的 -->
+    <section class="ticker-section">
+        <div class="ticker-container">
+            <div class="tradingview-widget-container" style="height:46px;width:100%">
+                <div class="tradingview-widget-container__widget" style="height:100%;width:100%"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+                {
+                    "symbols": [
+                        { "description": "", "proName": "BINANCE:BTCUSD" },
+                        { "description": "", "proName": "BINANCE:ETHUSD" },
+                        { "description": "", "proName": "NASDAQ:AAPL" },
+                        { "description": "", "proName": "NASDAQ:MSFT" },
+                        { "description": "", "proName": "NASDAQ:GOOGL" },
+                        { "description": "", "proName": "NASDAQ:NVDA" },
+                        { "description": "", "proName": "INDEX:SPX" },
+                        { "description": "", "proName": "INDEX:NDX" },
+                        { "description": "", "proName": "FX:EURUSD" },
+                        { "description": "", "proName": "FX:USDJPY" },
+                        { "description": "", "proName": "TVC:GOLD" }
+                    ],
+                    "showSymbolLogo": true,
+                    "colorTheme": "light",
+                    "isTransparent": false,
+                    "displayMode": "compact",
+                    "locale": "en"
+                }
+                </script>
+            </div>
+        </div>
+    </section>
+
+    <!-- 看板主内容区 - 分区布局 -->
+    <main class="dashboard-main">
+        <div class="dashboard-wrapper">
+            <!-- Aggregated financial news -->
+            <section class="dashboard-section">
+                <h2 class="section-title">📰 Financial News</h2>
+                <div class="section-grid section-grid-1">
+                    <div class="dashboard-card benzinga-card">
+                        <div id="benzinga-rss" class="benzinga-rss-container"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 热力图: Stock, Forex -->
+            <section class="dashboard-section">
+                <h2 class="section-title">📊 Heatmaps</h2>
+                <div class="section-grid section-grid-2">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Stock Market Heatmap</h3>
+                            <p class="card-desc">Sector & market cap performance. Data by TradingView</p>
+                        </div>
+                        <div class="widget-inner">
+                            <div class="tradingview-widget-container" style="height:380px;width:100%">
+                                <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
+                                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js" async>
+                                {
+                                    "exchanges": [],
+                                    "dataSource": "SPX500",
+                                    "grouping": "sector",
+                                    "blockSize": "market_cap_basic",
+                                    "blockColor": "change",
+                                    "locale": "en",
+                                    "symbolUrl": "",
+                                    "colorTheme": "light",
+                                    "hasTopBar": true,
+                                    "isDataSetEnabled": true,
+                                    "isZoomEnabled": true,
+                                    "hasSymbolTooltip": true,
+                                    "width": "100%",
+                                    "height": "380"
+                                }
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Forex Heatmap</h3>
+                            <p class="card-desc">Currency strength comparison in real-time</p>
+                        </div>
+                        <div class="widget-inner">
+                            <div class="tradingview-widget-container" style="height:380px;width:100%">
+                                <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
+                                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-forex-heat-map.js" async>
+                                {
+                                    "colorTheme": "light",
+                                    "currencies": ["EUR", "USD", "JPY", "GBP", "CHF", "AUD", "CAD", "NZD", "CNY"],
+                                    "isTransparent": false,
+                                    "width": "100%",
+                                    "height": "380",
+                                    "locale": "en"
+                                }
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 交易所状态 + Top Stories -->
+            <section class="dashboard-section">
+                <h2 class="section-title">🌍 Exchange & News</h2>
+                <div class="section-grid section-grid-2">
+                    <div class="dashboard-card map-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Global Exchange Status</h3>
+                            <p class="card-desc">Real-time open/closed status by your local time</p>
+                        </div>
+                        <div class="map-wrapper">
+                            <div id="exchange-map" class="exchange-map"></div>
+                        </div>
+                        <div id="exchange-list" class="exchange-list"></div>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Top Stories</h3>
+                            <p class="card-desc">Market news snapshot by TradingView</p>
+                        </div>
+                        <div class="widget-inner">
+                            <div class="tradingview-widget-container" style="height:500px;width:100%">
+                                <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
+                                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
+                                {
+                                    "feedMode": "all_symbols",
+                                    "colorTheme": "light",
+                                    "isTransparent": false,
+                                    "displayMode": "regular",
+                                    "width": "100%",
+                                    "height": "500",
+                                    "locale": "en"
+                                }
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-text">Financial Guy</span>
+                </div>
+                <p class="footer-text">
+                    Created by <strong>mingyu li</strong> | Professional Financial Tools Platform
+                </p>
+                <p class="footer-copyright">
+                    © 2026 Financial Guy. Focused on providing practical tools for everyone.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <script src="dashboard.js"></script>
+    <script src="benzinga-rss.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- Home Page (Market Dashboard) -->
+    <url>
+        <loc>https://<iameasonli>.github.io/financial-guy/index.html</loc>
+        <lastmod>2026-10-14</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    
+    <!-- Tools Center Page -->
+    <url>
+        <loc>https://<iameasonli>.github.io/financial-guy/tools.html</loc>
+        <lastmod>2026-10-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <!-- DCF Discounted Cash Flow Model -->
+    <url>
+        <loc>https://<iameasonli>.github.io/financial-guy/dcf.html</loc>
+        <lastmod>2026-10-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Mortgage Calculator -->
+    <url>
+        <loc>https://<iameasonli>.github.io/financial-guy/mortgage.html</loc>
+        <lastmod>2026-10-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Investment Return Calculator -->
+    <url>
+        <loc>https://<iameasonli>.github.io/financial-guy/investment.html</loc>
+        <lastmod>2026-10-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Retirement Planning Calculator -->
+    <url>
+        <loc>https://<iameasonli>.github.io/financial-guy/retirement.html</loc>
+        <lastmod>2026-10-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+</urlset>

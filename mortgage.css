@@ -1,0 +1,495 @@
+/**
+ * 房贷计算器 - 样式文件
+ * 左右分栏布局，参考专业抵押贷款计算器设计
+ */
+
+@import url('costofauto.css');
+
+/* ===== 覆盖 calc-compact，使用 mortgage 专用布局 ===== */
+.mortgage-layout .mortgage-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--spacing-sm) var(--spacing-md);
+}
+
+.mortgage-layout .mortgage-header {
+    margin-bottom: var(--spacing-md);
+}
+
+.mortgage-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+/* 说明横幅 */
+.mortgage-banner {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: 0.5rem 0.75rem;
+    background: #1a365d;
+    color: #fff;
+    font-size: 0.875rem;
+    border-radius: var(--radius-sm);
+}
+
+.banner-arrow {
+    font-size: 0.75rem;
+    opacity: 0.9;
+}
+
+.banner-text {
+    flex: 1;
+}
+
+.banner-print {
+    color: #fff;
+    text-decoration: underline;
+    font-size: 0.85rem;
+}
+
+.banner-print:hover {
+    opacity: 0.9;
+}
+
+/* ===== 三列布局：输入 | 结果 | 还款明细 ===== */
+.mortgage-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--spacing-md);
+    align-items: start;
+}
+
+@media (max-width: 1200px) {
+    .mortgage-main {
+        grid-template-columns: 1fr 1fr;
+    }
+    .mortgage-schedule {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 900px) {
+    .mortgage-main {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===== 左栏：输入表单 ===== */
+.mortgage-left {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+}
+
+.mortgage-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.form-block {
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.form-block:last-of-type {
+    border-bottom: none;
+}
+
+.form-block-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+}
+
+.form-row .form-group:last-child {
+    margin-bottom: 0;
+}
+
+.mortgage-left .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.mortgage-left label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.mortgage-left input[type="number"],
+.mortgage-left input[type="text"],
+.mortgage-left select {
+    padding: 0.5rem 0.6rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+}
+
+.input-with-suffix {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+}
+
+.input-with-suffix input {
+    flex: 1;
+    border: none !important;
+    border-radius: 0;
+}
+
+.input-suffix {
+    padding: 0.5rem 0.6rem;
+    background: var(--bg-secondary);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.date-inputs {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.date-inputs select {
+    flex: 1;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: var(--spacing-sm);
+}
+
+.checkbox-label input {
+    width: auto;
+}
+
+.tax-cost-block {
+    margin-top: var(--spacing-sm);
+}
+
+.tax-cost-block .form-group {
+    margin-bottom: var(--spacing-sm);
+}
+
+.form-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.btn-calculate {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    background: #2d7a3e;
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-calculate:hover {
+    background: #246b32;
+}
+
+.btn-clear {
+    padding: 0.6rem 1rem;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.btn-clear:hover {
+    background: var(--border-color);
+}
+
+/* ===== 右栏：结果展示 ===== */
+.mortgage-right {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+/* 月供突出条 */
+.result-monthly-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    background: #2d7a3e;
+    color: #fff;
+    border-radius: var(--radius-md);
+}
+
+.result-monthly-label {
+    font-size: 0.95rem;
+}
+
+.result-monthly-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* 月度/总计分解表 */
+.result-breakdown-table {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.result-breakdown-table table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.result-breakdown-table th,
+.result-breakdown-table td {
+    padding: 0.6rem 0.75rem;
+    text-align: right;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.result-breakdown-table th:first-child,
+.result-breakdown-table td:first-child {
+    text-align: left;
+}
+
+.result-breakdown-table thead th {
+    background: var(--bg-secondary);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.result-breakdown-table .total-row td {
+    font-weight: 700;
+    background: var(--bg-secondary);
+}
+
+/* 成本分布图 */
+.result-chart-block {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+}
+
+.result-chart-block h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+}
+
+.donut-chart-wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.donut-chart {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    /* JS 动态设置 background */
+}
+
+.donut-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-size: 0.8rem;
+}
+
+.legend-item::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    margin-right: 0.4rem;
+    vertical-align: middle;
+}
+
+.legend-item[data-color="pni"]::before { background: #3b82f6; }
+.legend-item[data-color="tax"]::before { background: #86efac; }
+.legend-item[data-color="ins"]::before { background: #b45309; }
+.legend-item[data-color="other"]::before { background: #93c5fd; }
+
+/* 财务摘要 */
+.result-summary {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+}
+
+.result-summary h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+}
+
+.summary-list {
+    list-style: none;
+}
+
+.summary-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.4rem 0;
+    font-size: 0.85rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.summary-list li:last-child {
+    border-bottom: none;
+}
+
+.summary-list li span:first-child {
+    color: var(--text-secondary);
+}
+
+.summary-list li span:last-child {
+    font-weight: 600;
+}
+
+/* ===== 滑块样式 ===== */
+.slider-value {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-left: 0.5rem;
+}
+
+.mortgage-left input[type="range"] {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--border-color);
+    margin: 0.25rem 0;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.mortgage-left input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    cursor: pointer;
+}
+
+.mortgage-left input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    cursor: pointer;
+    border: none;
+}
+
+/* 滑块下方输入框 */
+.form-group.with-slider input[type="number"] {
+    margin-top: 0.25rem;
+}
+
+/* Variable rate block */
+.variable-rate-block {
+    padding: var(--spacing-sm);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-sm);
+    margin-top: var(--spacing-xs);
+}
+
+.variable-rate-block .form-group {
+    margin-bottom: var(--spacing-sm);
+}
+
+/* ===== 第三列：还款明细表 ===== */
+.mortgage-schedule {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+}
+
+.schedule-column-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.schedule-view-toggle {
+    display: flex;
+    gap: 0.5rem;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--bg-secondary);
+}
+
+.view-btn {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.85rem;
+    border: 1px solid var(--border-color);
+    background: var(--bg-primary);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+}
+
+.view-btn.active {
+    background: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+
+.schedule-table-scroll {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.amortization-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+}
+
+.amortization-table th,
+.amortization-table td {
+    padding: 0.4rem 0.6rem;
+    text-align: right;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.amortization-table th:first-child,
+.amortization-table td:first-child {
+    text-align: left;
+}
+
+.amortization-table thead th {
+    position: sticky;
+    top: 0;
+    background: var(--bg-secondary);
+    font-weight: 600;
+}

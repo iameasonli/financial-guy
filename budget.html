@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Planning Tool - Financial Guy</title>
+    <link rel="stylesheet" href="budget.css">
+    <link rel="stylesheet" href="professional-tools.css">
+</head>
+<body class="professional-tool-page budget-tool-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo-link">
+                    <img src="logo.jpg" alt="Financial Guy Logo" class="logo-img">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="tools.html" class="nav-link">Tools</a>
+                <a href="about.html" class="nav-link">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="banner-section">
+        <div class="banner-container">
+            <div class="banner-badge">
+                <span>💼 Professional Tool</span>
+            </div>
+            <h1 class="banner-title">Budget Planning Tool</h1>
+            <p class="banner-subtitle">Create personal or family budgets, track expenses, and achieve financial goals</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <main class="main-content">
+            <section class="input-section">
+                <h2>Monthly Budget</h2>
+                <form id="budgetForm" class="form">
+                    <div class="form-group">
+                        <label for="monthlyIncome">Monthly Income</label>
+                        <input type="number" id="monthlyIncome" name="monthlyIncome" step="any" min="0" required placeholder="e.g., 20000">
+                    </div>
+
+                    <h3 class="form-section-title">Expense Categories</h3>
+                    <small class="form-hint">Enter your planned monthly budget for each category. Leave 0 for unused categories.</small>
+
+                    <div class="expense-categories">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="housing">Housing / Rent</label>
+                                <input type="number" id="housing" name="housing" step="any" min="0" value="0" placeholder="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="utilities">Utilities</label>
+                                <input type="number" id="utilities" name="utilities" step="any" min="0" value="0" placeholder="0">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="food">Food & Groceries</label>
+                                <input type="number" id="food" name="food" step="any" min="0" value="0" placeholder="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="transport">Transportation</label>
+                                <input type="number" id="transport" name="transport" step="any" min="0" value="0" placeholder="0">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="insurance">Insurance</label>
+                                <input type="number" id="insurance" name="insurance" step="any" min="0" value="0" placeholder="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="healthcare">Healthcare</label>
+                                <input type="number" id="healthcare" name="healthcare" step="any" min="0" value="0" placeholder="0">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="entertainment">Entertainment</label>
+                                <input type="number" id="entertainment" name="entertainment" step="any" min="0" value="0" placeholder="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="savings">Savings Goal</label>
+                                <input type="number" id="savings" name="savings" step="any" min="0" value="0" placeholder="0">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="other">Other Expenses</label>
+                            <input type="number" id="other" name="other" step="any" min="0" value="0" placeholder="0">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Analyze Budget</button>
+                </form>
+            </section>
+
+            <section id="resultSection" class="result-section" style="display: none;">
+                <h2>Budget Analysis</h2>
+                <div class="result-card">
+                    <div class="result-main">
+                        <div class="result-value">
+                            <span class="result-label">Remaining / Surplus</span>
+                            <span class="result-number" id="remaining">0</span>
+                            <span class="result-unit">$/month</span>
+                        </div>
+                    </div>
+                    <div class="result-breakdown">
+                        <h3>Summary</h3>
+                        <div class="breakdown-list">
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Total Income</span>
+                                <span class="breakdown-value" id="totalIncome">0</span>
+                                <span class="breakdown-unit">$</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Total Expenses</span>
+                                <span class="breakdown-value" id="totalExpenses">0</span>
+                                <span class="breakdown-unit">$</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Savings Goal</span>
+                                <span class="breakdown-value" id="savingsGoal">0</span>
+                                <span class="breakdown-unit">$</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="result-breakdown">
+                        <h3>Expense Breakdown</h3>
+                        <div class="breakdown-list" id="expenseBreakdown"></div>
+                    </div>
+                </div>
+                <button type="button" class="btn-secondary" onclick="resetForm()">Recalculate</button>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-text">Financial Guy</span>
+                </div>
+                <p class="footer-text">
+                    Created by <strong>mingyu li</strong> | Professional Financial Tools Platform
+                </p>
+                <p class="footer-copyright">
+                    © 2026 Financial Guy. Focused on providing practical tools for everyone.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="budget.js"></script>
+</body>
+</html>

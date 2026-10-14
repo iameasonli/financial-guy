@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Return Calculator - Financial Guy</title>
+    <link rel="stylesheet" href="investment.css">
+    <link rel="stylesheet" href="professional-tools.css">
+</head>
+<body class="calc-page professional-tool-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo-link">
+                    <img src="logo.jpg" alt="Financial Guy Logo" class="logo-img">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="tools.html" class="nav-link active">Tools</a>
+                <a href="about.html" class="nav-link">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- 第一部分：计算器名称（左上） -->
+        <header class="calc-header">
+            <h1>Investment Return Calculator</h1>
+            <p class="tool-guidance">Adjust your investment assumptions, then calculate to compare projected growth and returns.</p>
+        </header>
+
+        <main class="main-content">
+            <!-- 第二部分：输入参数 -->
+            <section class="input-section calc-section">
+                <h2 class="calc-section-title">Input Parameters</h2>
+                <form id="investmentForm" class="form">
+                    <div class="form-group">
+                        <label for="initialInvestment">PV - Initial Investment</label>
+                        <input type="number" id="initialInvestment" name="initialInvestment" step="any" min="0" required placeholder="100000">
+                    </div>
+                    <div class="form-group">
+                        <label for="annualReturn">r - Annual Return (%)</label>
+                        <input type="number" id="annualReturn" name="annualReturn" step="any" min="-100" max="100" required placeholder="8">
+                    </div>
+                    <div class="form-group">
+                        <label for="years">n - Term (years)</label>
+                        <input type="number" id="years" name="years" step="any" min="1" max="100" required placeholder="10">
+                    </div>
+                    <div class="form-group">
+                        <label for="monthlyContribution">PMT - Monthly Contribution</label>
+                        <input type="number" id="monthlyContribution" name="monthlyContribution" step="any" min="0" value="0" placeholder="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="compoundFrequency">k - Compound Frequency</label>
+                        <select id="compoundFrequency" name="compoundFrequency">
+                            <option value="12">Monthly (12)</option>
+                            <option value="4">Quarterly (4)</option>
+                            <option value="2">Semi-annual (2)</option>
+                            <option value="1">Annual (1)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-primary">Calculate</button>
+                </form>
+            </section>
+
+            <!-- 第三部分：计算结果 -->
+            <section id="resultSection" class="result-section calc-section" style="display: none;">
+                <h2 class="calc-section-title">Results</h2>
+                <div class="result-card">
+                    <div class="result-main">
+                        <div class="result-value">
+                            <span class="result-label">FV (Future Value)</span>
+                            <span class="result-number" id="futureValue">0</span>
+                            <span class="result-unit">$</span>
+                        </div>
+                    </div>
+                    <div class="result-breakdown">
+                        <h3>Summary</h3>
+                        <div class="breakdown-list">
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Total Invested</span>
+                                <span class="breakdown-value" id="totalInvested">0</span>
+                                <span class="breakdown-unit">$</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Total Return</span>
+                                <span class="breakdown-value" id="totalReturn">0</span>
+                                <span class="breakdown-unit">$</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Return Rate</span>
+                                <span class="breakdown-value" id="returnRate">0%</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Payback Period</span>
+                                <span class="breakdown-value" id="paybackPeriod">-</span>
+                                <span class="breakdown-unit">years</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn-secondary" onclick="resetForm()">Recalculate</button>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-text">Financial Guy</span>
+                </div>
+                <p class="footer-text">
+                    Created by <strong>mingyu li</strong> | Professional Financial Tools Platform
+                </p>
+                <p class="footer-copyright">
+                    © 2026 Financial Guy. Focused on providing practical tools for everyone.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="investment.js"></script>
+</body>
+</html>

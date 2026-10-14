@@ -1,0 +1,106 @@
+/**
+ * About page – text left, photo right, clean two-column layout
+ */
+
+.about-main {
+    padding: var(--spacing-2xl) 0;
+    background: #ffffff;
+}
+
+.about-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+/* Two-column: text left, photo right */
+.about-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-2xl);
+    align-items: center;
+}
+
+/* Left: text content */
+.about-text {
+    max-width: 480px;
+}
+
+.about-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.1;
+}
+
+.about-intro {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--spacing-md);
+}
+
+.about-body {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: var(--spacing-lg);
+}
+
+.about-linkedin {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #0a66c2;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-radius: var(--radius-md);
+    transition: var(--transition);
+}
+
+.about-linkedin:hover {
+    background: #004182;
+}
+
+/* Right: photo – large, soft rounded corners */
+.about-photo-wrap {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    max-height: 520px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f5f5f5;
+}
+
+.about-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .about-section {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+    }
+
+    .about-text {
+        max-width: none;
+        order: 1;
+    }
+
+    .about-photo-wrap {
+        order: 0;
+        max-height: 400px;
+        aspect-ratio: 4 / 3;
+    }
+
+    .about-title {
+        font-size: 2.25rem;
+    }
+}

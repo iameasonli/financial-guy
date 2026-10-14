@@ -1,0 +1,30 @@
+/**
+ * 预算规划工具 - 样式文件
+ */
+
+@import url('costofauto.css');
+
+.form-section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: var(--spacing-md) 0 var(--spacing-sm);
+    color: var(--text-primary);
+}
+
+.expense-categories {
+    margin-top: var(--spacing-sm);
+}
+
+.result-value.positive .result-number {
+    color: #0a7c42;
+}
+
+.result-value.negative .result-number {
+    color: #c0392b;
+}
+
+.no-data {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    padding: var(--spacing-md);
+}

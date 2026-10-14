@@ -1,0 +1,198 @@
+/**
+ * 计算器紧凑布局 - 共享样式
+ * 适用于 Investment, Mortgage, Retirement, Tax 计算器
+ * 三部分结构：标题(左上) | 输入区 | 结果区
+ */
+
+/* ===== 紧凑页面布局 ===== */
+.calc-page .banner-section {
+    display: none;
+}
+
+.calc-page .container {
+    max-width: 900px;
+    padding: var(--spacing-sm) var(--spacing-md);
+}
+
+.calc-page .main-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm) 0 var(--spacing-lg);
+}
+
+/* 计算器标题 - 左上角 */
+.calc-header {
+    margin-bottom: var(--spacing-sm);
+}
+
+.calc-header h1 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.3px;
+}
+
+/* ===== 三部分区域 ===== */
+.calc-section {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    box-shadow: var(--shadow-sm);
+}
+
+.calc-section-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: var(--spacing-sm);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* ===== 输入区 - 紧凑表单 ===== */
+.calc-page .input-section,
+.calc-page .result-section {
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    box-shadow: none;
+}
+
+.calc-page .input-section h2,
+.calc-page .result-section h2 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.calc-page .form {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: var(--spacing-sm);
+    align-items: end;
+}
+
+@media (max-width: 600px) {
+    .calc-page .form {
+        grid-template-columns: 1fr;
+    }
+}
+
+.calc-page .form-group {
+    gap: 0.25rem;
+}
+
+.calc-page .form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.calc-page label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.calc-page .form-hint {
+    font-size: 0.75rem;
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+}
+
+.calc-page input[type="number"],
+.calc-page input[type="text"],
+.calc-page select {
+    padding: 0.5rem 0.6rem;
+    font-size: 0.9rem;
+}
+
+.calc-page .btn-primary {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    margin-top: 0;
+    grid-column: 1 / -1;
+    justify-self: start;
+}
+
+/* ===== 结果区 - 紧凑 ===== */
+.calc-page .result-card {
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+}
+
+.calc-page .result-main {
+    padding: var(--spacing-sm) 0;
+    margin-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.calc-page .result-value {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem;
+}
+
+.calc-page .result-label {
+    font-size: 0.8rem;
+}
+
+.calc-page .result-number {
+    font-size: 1.75rem;
+}
+
+.calc-page .result-unit {
+    font-size: 0.85rem;
+}
+
+.calc-page .result-breakdown h3 {
+    font-size: 0.875rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.calc-page .breakdown-list {
+    gap: var(--spacing-xs);
+}
+
+.calc-page .breakdown-item,
+.calc-page .info-item {
+    padding: 0.4rem 0.6rem;
+}
+
+.calc-page .breakdown-label,
+.calc-page .info-label {
+    font-size: 0.8rem;
+}
+
+.calc-page .breakdown-value,
+.calc-page .info-value {
+    font-size: 0.95rem;
+}
+
+.calc-page .btn-secondary {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    margin-top: var(--spacing-sm);
+}
+
+/* 还款计划表紧凑 */
+.calc-page .schedule-table th,
+.calc-page .schedule-table td {
+    padding: 0.4rem 0.5rem;
+    font-size: 0.8rem;
+}
+
+.calc-page .advanced-options {
+    margin-top: var(--spacing-sm);
+    padding: var(--spacing-sm);
+}
+
+.calc-page .advanced-options summary {
+    font-size: 0.85rem;
+}
