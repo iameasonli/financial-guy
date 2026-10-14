@@ -1,92 +1,51 @@
-# 每公里真实成本计算器
+# Financial Guy — Quantitative Financial Modeling & Market Analytics Platform
 
-一个基于"资产消耗 + 运营消耗"硬核算法的车辆使用成本计算工具。专注于计算**每开一公里，钱包里实际少了多少钱**。
+[![Live Demo](https://img.shields.io/badge/Live_Platform-GitHub_Pages-2ea44f?style=for-the-badge&logo=github)](https://<your-github-username>.github.io/financial-guy/)
+[![Tech Stack](https://img.shields.io/badge/Stack-HTML5_%7C_CSS3_%7C_Vanilla_JS-15171a?style=for-the-badge)]()
+[![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)]()
 
-## 核心算法
+> **Operational Status:** Previously operated under an independent production domain; migrated to **GitHub Pages** in October 2026 as a permanent, open-source quantitative finance portfolio and toolset.
 
-### 真实成本公式
+**Financial Guy** is a lightweight, zero-dependency web platform designed to make corporate valuation, personal wealth planning, and global market monitoring intuitive and clutter-free. Created and maintained by **Mingyu Li**.
 
-```
-每公里真实成本 = 资产损耗 + 能源消耗 + 维保系数 + 固定成本分摊
-```
+---
 
-### 详细拆解
+## Core Modules & Financial Methodology
 
-1. **资产损耗**：基于剩余寿命计算每公里车价折损
-2. **能源消耗**：考虑城市/高速比例的油耗成本
-3. **维保系数**：动态计算，根据里程、车龄、品牌调整
-4. **固定成本**：保险、年检、税费、停车费等分摊
+### 1. Real-Time Global Market Dashboard (`index.html`)
+* **Global Exchange Status Map:** Built with `Leaflet.js` and `Intl.DateTimeFormat` timezone engines to monitor real-time trading statuses (`Open` / `Closed` / `Weekend`) across **14 major global exchanges** (NYSE/NASDAQ, TSX, LSE, XETRA, Euronext, TSE, HKEX, SSE, SGX, KRX, NSE, ASX, NZX, B3).
+* **Fault-Tolerant Financial News Engine:** Integrates Benzinga RSS feeds using an asynchronous multi-proxy fallback architecture (`rss2json` + 4 CORS failover proxies) with automated 15-minute polling.
+* **Market Heatmaps & Ticker Tape:** Embedded TradingView S&P 500 sector treemaps and real-time G10 currency strength matrices.
 
-## 功能特点
+### 2. Corporate Valuation: DCF & WACC Model (`dcf.html`)
+* **CAPM & WACC Engine:** Automatically computes Cost of Equity ($R_e = R_f + \beta \times ERP$) and after-tax Weighted Average Cost of Capital:
+  $$WACC = \left(\frac{E}{V} \times R_e\right) + \left(\frac{D}{V} \times R_d \times (1 - T)\right)$$
+* **5-Year FCFF Projection:** Derives Free Cash Flow to Firm ($FCFF = EBIT(1-T) + D\&A - CapEx - \Delta NWC$) and discounts cash flows to Present Value.
+* **Dual Terminal Value Methods:** Supports both **Perpetuity Growth** ($TV = \frac{FCFF_n(1+g)}{WACC - g}$) and **Exit Multiple** ($EV/EBITDA$) approaches.
+* **Sensitivity & Scenario Analysis:** Instant switching between `Base`, `Optimistic` (+5% rev growth, +2% EBIT margin, -1% WACC), and `Pessimistic` scenarios, complete with preset benchmark financial data (Amazon.com, Inc.).
 
-- ✅ **硬核算法**：去繁就简，专注真实使用成本
-- ✅ **动态维保系数**：根据里程、车龄、品牌智能调整
-- ✅ **品牌差异化**：支持日系、德系、美系、韩系、豪车等不同品牌
-- ✅ **车况考虑**：根据车况调整最大寿命
-- ✅ **残值模式**：支持"开到报废"和"中途卖出"两种模式
-- ✅ **响应式设计**：完美支持PC和移动端
-- ✅ **简洁界面**：现代化UI设计，操作简单直观
+### 3. Personal Wealth & Financial Planning Suite (`tools.html`)
+* **Mortgage Amortization Engine (`mortgage.html`):** Supports Fixed vs. Variable interest rate adjustments, Monthly vs. Bi-weekly payment schedules, property tax/PMI/HOA inclusions, interactive CSS `conic-gradient` cost distribution charts, and full Year/Month amortization tables.
+* **Investment Return Calculator (`investment.html`):** Models lump-sum ($PV$) + periodic annuity ($PMT$) compounding across customizable frequencies alongside Rule of 72 payback estimation.
+* **Inflation-Adjusted Retirement Planner (`retirement.html`):** Projects required retirement corpus ($FV$) adjusted for inflation ($\pi$) and solves for required monthly savings ($PMT$) to bridge funding shortfalls.
+* **Income Tax & Monthly Budget Planners (`tax.html`, `budget.html`):** Multi-bracket marginal tax rate calculator (comprehensive salary vs. standalone bonus) and categorical cash-flow surplus/deficit analyzer.
 
-## 使用方法
+---
 
-1. 直接在浏览器中打开 `index.html`
-2. 填写车辆信息（必填项已标注）
-3. 点击"计算真实成本"按钮
-4. 查看详细的成本明细和车辆信息
+## Project Structure
 
-## 文件结构
-
-```
-Web- Auto price cal/
-├── index.html      # 主页面
-├── style.css       # 样式文件
-├── script.js       # 计算逻辑
-└── README.md       # 说明文档
-```
-
-## 技术栈
-
-- 纯 HTML/CSS/JavaScript
-- 无需构建工具，直接运行
-- 响应式设计（CSS Grid + Flexbox）
-- 现代浏览器兼容
-
-## 浏览器支持
-
-- Chrome/Edge (最新版)
-- Firefox (最新版)
-- Safari (最新版)
-- 移动端浏览器
-
-## 算法说明
-
-### 品牌可靠性系数
-
-- 日系：1.0（基准值）
-- 韩系：0.95
-- 德系：0.90
-- 美系：0.85
-- 豪车：0.85
-
-### 车况系数
-
-- 精品车况：1.0
-- 正常使用：0.95
-- 一般车况：0.85
-- 较差车况：0.70
-
-### 维保系数计算
-
-根据里程分段：
-- 0-10万公里：基础系数
-- 10-20万公里：+30%
-- 20万+公里：+80%
-
-根据车龄：每年增加5%
-
-根据品牌：豪车系数 ×1.5
-
-## 许可证
-
-MIT License
-
+```text
+financial-guy/
+├── index.html / index.css          # Real-Time Market Dashboard
+├── dashboard.js                    # 14-Exchange Timezone & Leaflet Map Engine
+├── benzinga-rss.js                 # Multi-Proxy Fault-Tolerant RSS News Parser
+├── tools.html / tools.css          # Financial Calculators Hub (6 Core Tools)
+├── dcf.html / dcf.css / dcf.js     # 5-Year DCF Valuation & WACC Sensitivity Model
+├── mortgage.html / .css / .js      # Fixed/Variable Mortgage & Amortization Engine
+├── investment.html / .css / .js    # Compounding & Annuity Return Calculator
+├── retirement.html / .css / .js    # Inflation-Adjusted Retirement Corpus Planner
+├── tax.html / .css / .js           # Progressive Marginal Tax Calculator
+├── budget.html / .css / .js        # Personal Cash Flow & Budget Analyzer
+├── costofauto.css / calc-compact.css # Shared Base & Compact UI Stylesheets
+├── about.html / about.css          # Creator Profile & Product Changelog
+└── picture/user.jpeg & logo.jpg    # Brand & Profile Assets
